@@ -25,7 +25,6 @@ body {
 
 .item{
     margin: 10vh;
-    padding: 5vh;
     border-style: solid;
     border-color: azure;
     border-width: 2px;
@@ -33,6 +32,7 @@ body {
 
 .item:hover{
     background-color: #FFF;
+    border-color: black;
     transition: linear 0.5s;
     cursor: pointer;
 }
@@ -43,6 +43,7 @@ body {
 
 .item-link {
     display: flex;
+    padding: 5vh;
     color: #FFF;
     text-decoration: none;
 }
