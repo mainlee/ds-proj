@@ -30,7 +30,7 @@ main {
 
 .input-view {
     width: 20vw;
-    height: 90vh;
+    height: 88vh;
     border-right: 2px solid #FFF;
 }
 
@@ -78,4 +78,36 @@ main {
     background-color: #FFF;
     color: #000;
     transition: linear 0.4s;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    margin:1.5vh 0vh 1vh 1vh;
+    width: 4%;
+    height: 7vh;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+}
+
+.back-btn a{
+    display: flex;
+    width: 100%;
+    color: #FFF;
+    padding-left: 30%;    
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+.back-btn:hover {
+    display: flex;
+    transition: linear 0.4s;
+    background-color: #FFF;
+    border: 1px solid #000;
+}
+
+.back-btn:hover a{
+    display: flex;
+    transition: linear 0.4s;
+    color: #000;
 }
