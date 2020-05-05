@@ -30,7 +30,7 @@ main {
 
 .input-view {
     width: 20vw;
-    height: 88vh;
+    height: 89.5vh;
     border-right: 2px solid #FFF;
 }
 
@@ -103,11 +103,17 @@ main {
     display: flex;
     transition: linear 0.4s;
     background-color: #FFF;
-    border: 1px solid #000;
 }
 
 .back-btn:hover a{
     display: flex;
     transition: linear 0.4s;
     color: #000;
+}
+
+#ldde-canvas{
+    margin: 0;
+    width: 80vw;
+    height: 89vh;
+    border: 1px solid #000;
 }
