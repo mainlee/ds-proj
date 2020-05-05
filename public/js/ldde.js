@@ -8,15 +8,26 @@ const c_w = 1100;
 
 var noVector = [];
 
-function criaNo(){
+function guardaNo(){
     var v = document.getElementById('valor').value;
-    noVector.push(v);
+    if(isNaN(v)){
+        alert('Apenas é permitido a inserção de números, favor tentar novamente!');
+    } else {
+        noVector.push(v);
+        alert('Valor inserido!');
+        drawNo(v, 0, 0);
+    }
+    document.getElementById('valor').value = "";
 }
 
-
-
-ctx.fillStyle = 'green';
-ctx.fillRect(10, 10, 150, 100);
-
-ctx.font = "30px Arial";
-ctx.strokeText("Hello World", 10, 50);
+//
+function drawNo(valor, pos_x, pos_y){
+    ctx.fillStyle = '#FFF';
+    ctx.font = "16px Georgia";
+    ctx.fillText(valor , pos_x+70, pos_y+50);
+    ctx.strokeStyle = "#FFF";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(pos_x, pos_y, 20, 100);
+    ctx.strokeRect(pos_x, pos_y, 130, 100);
+    ctx.strokeRect(pos_x, pos_y, 150, 100);
+}
