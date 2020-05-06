@@ -20,14 +20,18 @@ function criaNo(num, cNo, cAnt, cPrx){
         pAnt: cAnt,
         pPrx: cPrx,
     };
-
     ldde.push(no);
 }
 
 //Atualiza posição do No anterior
 function atualizaNoAnt(no, nCord){
-        no.pPrx.x = nCord.x;
-        no.pPrx.y = nCord.y;
+    no.pPrx.x = nCord.x;
+    no.pPrx.y = nCord.y;
+}
+
+function atualizaNo(no, nCord){
+    no.pAnt.x = nCord.x;
+    no.pAnt.y = nCord.y;
 }
 
 
@@ -41,18 +45,40 @@ function insere(num){
     } else {
         var newCord = {
             x: ldde[ant].crd.x+distX,
-            y: ldde[ant].crd
+            y: ldde[ant].crd.y
         };
+        //cria o No e atualiza o anterior
         criaNo(num, newCord, ldde[ant].crd, {});
         atualizaNoAnt(ldde[ant], newCord);
     }
 }
 
 function busca(num){
-    
+    //vetor de valores dos Nos
+    var busca = ldde.map(function(no){
+        return no.valor;
+    });
+    //Retorna o index do valor encontrado
+    return busca.indexOf(num);
 }
 
 function remove(num){
-    ldde.splice(ldde.indexOf());
+    var i = busca(num);
 
+    //Atualização dos 'ponteiros'
+    var prxCord = {
+        x: ldde[i].pPrx.x,
+        y: ldde[i].pPrx.y
+    }
+    
+    var antCord = {
+        x: ldde[i].pAnt.x,
+        y: ldde[i].pAnt.y
+    }
+
+    atualizaNoAnt(ldde[i-1], prxCord);
+    atualizaNo(ldde[i+1], antCord);
+
+    //remoção do Nó
+    ldde.splice(i,1);    
 }
