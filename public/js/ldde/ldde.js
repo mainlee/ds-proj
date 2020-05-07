@@ -3,7 +3,7 @@
 const canvas = document.getElementById('ldde');
 const ctx = canvas.getContext('2d');
 
-ctx.lineWidth = 2;
+/*ctx.lineWidth = 2;
 
 //variaveis de posicao e tamanho
 
@@ -169,4 +169,4 @@ function lastLane(pos_x, pos_y){
     ctx.lineTo(pos_x-3*distX-40,pos_y+distY+75);
     ctx.lineTo(pos_x-3*distX+10,pos_y+distY+75);
     ctx.stroke();
-}
+}*/

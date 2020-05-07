@@ -5,6 +5,8 @@ const cordIni = {
     y: 50
 }
 
+const tamNoX = 110;
+const tamNoY = 100;
 const distX = 250;
 const distY = 220;
 
@@ -12,34 +14,45 @@ const distY = 220;
 function criaNo(num, cNo, cAnt, cPrx){
     var no = {
         valor: num,
+        //Coordenadas do NO
         crd: cNo,
+        //Coord. dos ponteiros
         pAnt: cAnt,
-        pPrx: cPrx
+        pPrx: cPrx,
     };
 
     ldde.push(no);
 }
 
-function atualizaNo(cAnt, cPrx){
+//Atualiza posição do No anterior
+function atualizaNoAnt(no, nCord){
+        no.pPrx.x = nCord.x;
+        no.pPrx.y = nCord.y;
+}
+
+
+function insere(num){
+    var ant = ldde.length-1;
+    var tam = ldde.length;
+
+    //Caso nao haja No
+    if(tam == 0){
+        criaNo(num, cordIni, {}, {})
+    } else {
+        var newCord = {
+            x: ldde[ant].crd.x+distX,
+            y: ldde[ant].crd
+        };
+        criaNo(num, newCord, ldde[ant].crd, {});
+        atualizaNoAnt(ldde[ant], newCord);
+    }
+}
+
+function busca(num){
     
 }
 
-function insere(num){
-    //Index do anterior
-    var i = ldde.length-1;
+function remove(num){
+    ldde.splice(ldde.indexOf());
 
-    //Index do atual
-    var len = ldde.length;
-
-    if(ldde.length == 0){
-        //Primeiro No
-        criaNo(num, cordIni, null ,null);
-
-    } else {
-        const nCod = {
-            x: ldde[i].crd.x+distX,
-            y: ldde[i].crd.y+distY
-        }
-        //Demais Nos
-    }
 }
