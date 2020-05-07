@@ -1,22 +1,29 @@
-const ldde = [];
+//=================================================================//
+//                            ALGORITMO                            //
+//=================================================================//
+
+var ldde = [];
 
 const cordIni = {
     x: 100,
     y: 50
 }
 
-const tamNoX = 110;
+const tamNoX = 150;
 const tamNoY = 100;
+
 const distX = 250;
 const distY = 220;
+
+var tam, ant;
 
 //Função para criar o No
 function criaNo(num, cNo, cAnt, cPrx){
     var no = {
         valor: num,
-        //Coordenadas do NO
+        //Coordenadas do No
         crd: cNo,
-        //Coord. dos ponteiros
+        //Coord. dos outros Nos
         pAnt: cAnt,
         pPrx: cPrx,
     };
@@ -34,11 +41,13 @@ function atualizaNo(no, nCord){
     no.pAnt.y = nCord.y;
 }
 
+function atualizaDados(){
+    ant = ldde.length-1;
+    tam = ldde.length;
+}
 
 function insere(num){
-    var ant = ldde.length-1;
-    var tam = ldde.length;
-
+    atualizaDados();
     //Caso nao haja No
     if(tam == 0){
         criaNo(num, cordIni, {}, {})
@@ -54,6 +63,8 @@ function insere(num){
 }
 
 function busca(num){
+    atualizaDados();
+
     //vetor de valores dos Nos
     var busca = ldde.map(function(no){
         return no.valor;
@@ -65,7 +76,7 @@ function busca(num){
 function remove(num){
     var i = busca(num);
 
-    //Atualização dos 'ponteiros'
+    //Atualização dos outros Nos
     var prxCord = {
         x: ldde[i].pPrx.x,
         y: ldde[i].pPrx.y

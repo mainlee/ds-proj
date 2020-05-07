@@ -3,7 +3,7 @@
 const canvas = document.getElementById('ldde');
 const ctx = canvas.getContext('2d');
 
-/*ctx.lineWidth = 2;
+ctx.lineWidth = 2;
 
 //variaveis de posicao e tamanho
 
@@ -12,78 +12,41 @@ const canvas_h = 619;
 const canvas_w = 1100;
 
 //distancia entre os Nos
-const distX = 250;
-const distY = 220;
+//const distX = 250;
+//const distY = 220;
 
 //posicao inicial dos Nos
 const iniX = 100;
 const iniY = 50;
 
+//const ldde = exportLDDE();
+
 //Variaveis de controle
 var i = 0;
 var j = 0;
 
-//Vetor de Nos(?)
-var noVector = [];
-var num;
+//Atualização da tela
+function atualizaTela(){
+    ctx.fillStyle = "#667eea"
+    ctx.fillRect(0, 0, canvas_w, canvas_h);
+    for(var n=0; n<=tam;n++){
+        //console.log(n);
+        drawNo(ldde[n].valor, ldde[n].crd.x, ldde[n].crd.y);
+    }
+}
+
 
 function guardaNo(){
     var v = document.getElementById('valor').value;
+    v = Number(v);  
     if(isNaN(v) || v == ""){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
-        const no = {
-            valor: v,
-            noX: iniX+i*distX,
-            noY: iniY+j*distY
-        };
-        noVector.push(no);
-
-        i++;
-        if(i>3){
-            i = 0;
-            j++;
-        }
-        if(j>2){
-            alert('Acabou!');
-        }
-
-        var tam = noVector.length;
-        for(num = 0; num < tam ; num++){
-            drawNo(noVector[num].valor, noVector[num].noX, noVector[num].noY);
-        }
-
-        // alert('Valor inserido!');
-        //Primeira fileira
-        //drawNo(v, iniX, iniY);
-        //nullPointerAnt(iniX, iniY);
-        //nullPointer(iniX, iniY);
-        // drawLane(iniX, iniY);
-
-        // drawNo(v, iniX+distX, iniY);
-        // drawLane(iniX+distX, iniY);
-
-        // drawNo(v, iniX+2*distX, iniY);
-        // drawLane(iniX+2*distX, iniY);
-
-        // drawNo(v, iniX+3*distX, iniY);
-        // lastLane(iniX+3*distX, iniY);
-
-        //Segunda fileira
-        // drawNo(v, iniX, iniY+distY);
-        // drawNo(v, iniX+distX, iniY+distY);
-        // drawNo(v, iniX+2*distX, iniY+distY);
-        // drawNo(v, iniX+3*distX, iniY+distY);
-        // lastLane(iniX+3*distX, iniY+distY);
-
-        //Terceira fileira
-        // drawNo(v, iniX, iniY+2*distY);
-        // drawNo(v, iniX+distX, iniY+2*distY);
-        // drawNo(v, iniX+2*distX, iniY+2*distY);
-        // drawNo(v, iniX+3*distX, iniY+2*distY);
-        // nullPointer(iniX+3*distX, iniY+2*distY);
+        insere(v);
+        //console.log(ldde[tam].pAnt.x);
     }
     //Limpa campo de inserção
+    atualizaTela();
     document.getElementById('valor').value = "";
 }
 
@@ -123,7 +86,6 @@ function nullPointerAnt(pos_x, pos_y){
     const posX = pos_x-40;
     const posY = pos_y+50;
     const nPosY = pos_y+75;
-
 
     ctx.strokeStyle = "#FFF";
     ctx.lineWidth = 2;
@@ -169,4 +131,6 @@ function lastLane(pos_x, pos_y){
     ctx.lineTo(pos_x-3*distX-40,pos_y+distY+75);
     ctx.lineTo(pos_x-3*distX+10,pos_y+distY+75);
     ctx.stroke();
-}*/
+}
+
+atualizaTela();
