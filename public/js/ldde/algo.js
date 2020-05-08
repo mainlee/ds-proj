@@ -45,7 +45,11 @@ function insere(num){
     //Caso nao haja No
     if(tam == 0){
         criaNo(num, cordIni, {}, {})
-    } else {
+    } 
+    else if(tam >= 5){
+        alert("Memória cheia! Favor remover algum Nó!");
+        return false;
+    }  else {
         var newCord = {
             x: ldde[ant].crd.x+distX,
             y: ldde[ant].crd.y
@@ -54,6 +58,7 @@ function insere(num){
         criaNo(num, newCord, ldde[ant].crd, {});
         atualizaNoAnt(ldde[ant], newCord);
     }
+    return true;
 }
 
 function busca(num){

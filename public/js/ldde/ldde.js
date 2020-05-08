@@ -27,12 +27,12 @@ function guardaNo(){
     if(isNaN(v) || v == ""){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
-        insere(v);
-        limpaTela();
-        desenhaNos();
+        if(insere(v)){
+            limpaTela();
+            desenhaNos();
+        }
     }
     //Limpa campo de inserção
-    
     document.getElementById('valor').value = "";
 }
 
@@ -51,7 +51,6 @@ function desenhaNos(){
     for(i in ldde){
         if(i == 0){
             if(ldde[i].pPrx.x === undefined){
-                console.log(ldde[i].valor.toString())
                 ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+95, ldde[i].crd.y+55);
                 ctx.drawImage(fNo, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
             } else {
@@ -59,7 +58,6 @@ function desenhaNos(){
                 ctx.drawImage(fNo_p, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
             }
         } else {
-            console.log('Entrou aqui? i=', tam);
             if(i == tam){
                 ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+103, ldde[i].crd.y+55);
                 ctx.drawImage(lastNo, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
