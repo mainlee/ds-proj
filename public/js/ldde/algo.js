@@ -4,15 +4,9 @@
 
 var ldde = [];
 
-const cordIni = {
-    x: 100,
-    y: 50
-}
-
 const tamNoX = 150;
 const tamNoY = 100;
-
-const distX = 250;
+const distX = 180;
 const distY = 220;
 
 var tam, ant;
