@@ -25,16 +25,50 @@ const iniY = 50;
 var i = 0;
 var j = 0;
 
-//Atualização da tela
-function atualizaTela(){
+//
+function limpaTela(){
     ctx.fillStyle = "#667eea"
-    ctx.fillRect(0, 0, canvas_w, canvas_h);
-    for(var n=0; n<=tam;n++){
-        //console.log(n);
-        drawNo(ldde[n].valor, ldde[n].crd.x, ldde[n].crd.y);
-    }
+    ctx.fillRect(0, 0, canvas_w, canvas_h);    
 }
 
+//Atualização dos Nos
+function atualizaNos(){
+    limpaTela();
+
+    drawNo(ldde[0].valor, ldde[0].crd.x, ldde[0].crd.y);
+
+     
+    if(ldde[0].pAnt.x){
+        console.log("pAnt.X = ",ldde[0].pAnt.x);
+        nullPointerAnt(ldde[0].crd.x, ldde[0].crd.y);
+    }
+
+    /*
+    if(ldde[0].pPrx.x != undefined){
+        console.log("!= ",ldde[0].pPrx.x);
+        //nullPointer(ldde[0].crd.x, ldde[0].crd.y);
+    } else {
+        console.log(ldde[0].pPrx.x);
+        nullPointer(ldde[0].crd.x, ldde[0].crd.y);
+        //drawLane(ldde[0].crd.x, ldde[0].crd.y);
+    }*/
+
+    /*for(var n=0; n<=tam;n++){
+        drawNo(ldde[n].valor, ldde[n].crd.x, ldde[n].crd.y);
+
+        if(ldde[n].pAnt.x == undefined){
+            nullPointerAnt(ldde[n].crd.x, ldde[n].crd.y);
+        }
+
+        if(ldde[n].pPrx.x == undefined && ldde[n].pPrx.y == undefined){
+            console.log('pPrx == undefined');
+            nullPointer(ldde[n].crd.x, ldde[n].crd.y);
+        } else {
+            console.log('pPrx existe');
+            drawLane(ldde[n].crd.x, ldde[n].crd.y);
+        }
+    }*/
+}
 
 function guardaNo(){
     var v = document.getElementById('valor').value;
@@ -43,10 +77,10 @@ function guardaNo(){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
         insere(v);
-        //console.log(ldde[tam].pAnt.x);
+        atualizaNos();
     }
     //Limpa campo de inserção
-    atualizaTela();
+    
     document.getElementById('valor').value = "";
 }
 
@@ -70,13 +104,13 @@ function drawNo(valor, pos_x, pos_y){
 //Função de desenhar as ligações
 function drawLane(pos_x, pos_y){
     //Organização
-    const posX = pos_x+140;
+    /*const posX = pos_x+140;
     const nPosX = pos_x+260;
-    const posY = pos_y+75;
+    const posY = pos_y+75;*/
 
     ctx.strokeStyle = "#FFF";
-    ctx.moveTo(posX,posY);
-    ctx.lineTo(nPosX,posY);
+    ctx.moveTo(pos_x,pos_y);
+    ctx.lineTo(pos_x+50,pos_y+50);
     ctx.stroke();
 }
 
@@ -95,7 +129,7 @@ function nullPointerAnt(pos_x, pos_y){
     ctx.moveTo(posX,nPosY);
     ctx.lineTo(pos_x-60,nPosY);
     ctx.lineTo(pos_x-20,nPosY);
-    ctx.stroke();
+    //ctx.stroke();
 }
 
 //função que desenha o NULL próximo
@@ -133,4 +167,4 @@ function lastLane(pos_x, pos_y){
     ctx.stroke();
 }
 
-atualizaTela();
+limpaTela();
