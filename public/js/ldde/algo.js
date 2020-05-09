@@ -74,21 +74,47 @@ function busca(num){
 
 function remove(num){
     var i = busca(num);
-
-    //Atualização dos outros Nos
-    var prxCord = {
-        x: ldde[i].pPrx.x,
-        y: ldde[i].pPrx.y
+    //Não há Nó
+    if(i == -1){
+        alert('Este Nó não existe na lista!')
+        return false;
     }
+
+    //Caso seja o primeiro Nó
+    if(i == 0){
+        if(ldde[i+1] == undefined){
+            //Não há nó para atualizar
+        } else {
+            atualizaNo(ldde[i+1], {});
+        }
+    }
+
+    //Caso seja o ultimo Nó
+    else if (i == ant) {
+        atualizaNoAnt(ldde[i-1], {});
+    }
+
+    else {
+        //Atualização dos outros Nos
+        var prxCord = {
+            x: ldde[i].pPrx.x,
+            y: ldde[i].pPrx.y
+        }
+        
+        var antCord = {
+            x: ldde[i].pAnt.x,
+            y: ldde[i].pAnt.y
+        }  
+        
+        //Atualiza o Nó anterior com a Coord do prx Nó do Nó removido
+        atualizaNoAnt(ldde[i-1], prxCord);
     
-    var antCord = {
-        x: ldde[i].pAnt.x,
-        y: ldde[i].pAnt.y
+        //Atualiza o Nó seguinte com a Coord do Nó anterior do removido
+        atualizaNo(ldde[i+1], antCord);
     }
-
-    atualizaNoAnt(ldde[i-1], prxCord);
-    atualizaNo(ldde[i+1], antCord);
 
     //remoção do Nó
-    ldde.splice(i,1);    
+    ldde.splice(i,1); 
+    alert('Nó removido!');
+    return true;   
 }

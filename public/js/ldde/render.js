@@ -36,6 +36,20 @@ function guardaNo(){
     document.getElementById('valor').value = "";
 }
 
+function removeNo(){
+    var v = document.getElementById('valor').value;
+    v = Number(v);  
+    if(isNaN(v) || v == ""){
+        alert('Apenas é permitido a inserção de números, tente novamente!');
+    } else {
+        if(remove(v)){
+            limpaTela();
+            desenhaNos();
+        }
+    }
+    document.getElementById('valor').value = "";
+}
+
 //=============================================================//
 //                        CANVAS                               //
 //=============================================================//
@@ -46,6 +60,7 @@ function limpaTela(){
 }
 
 function desenhaNos(){
+    atualizaDados();
     ctx.font = "30px Arial";
     ctx.fillStyle = "white";
     for(i in ldde){
@@ -58,7 +73,7 @@ function desenhaNos(){
                 ctx.drawImage(fNo_p, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
             }
         } else {
-            if(i == tam){
+            if(i == ant){
                 ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+103, ldde[i].crd.y+55);
                 ctx.drawImage(lastNo, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
             }
