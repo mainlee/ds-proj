@@ -85,7 +85,7 @@ function remove(num){
         if(ldde[i+1] == undefined){
             //Não há nó para atualizar
         } else {
-            atualizaNo(ldde[i+1], {});
+            atualizaPrxNo(ldde[i+1], {});
         }
     }
 

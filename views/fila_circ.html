@@ -20,19 +20,27 @@
 
     <main>
         <div class="input-view">
-            <div class="input-txt">
-                Insira um número:
-            </div>
-            <div class="textbox">
-                <input type="text" id="valor" placeholder="Ex: 5">
+            <div id="">
+                <div class="input-txt">
+                    Determine o tamanho do vetor:
+                </div>
+                <div class="textbox">
+                    <input type="text" id="valor" placeholder="Ex: 5">
+                </div>
+                <div id="cria">
+                    <div class="btn" onclick="criou();">
+                        CRIAR
+                    </div>
+                </div>
+                
             </div>
 
-            <div class="btn-view">
-                <div class="btn" onclick="guardaNo();">
+            <div id="btn-view" hidden>
+                <div class="btn" onclick="alert('Enfileirou');">
                     ENFILEIRAR
                 </div>
 
-                <div class="btn" onclick="removeNo();">
+                <div class="btn" onclick="alert('Desenfileirou');">
                     DESENFILEIRAR
                 </div>
             </div>
@@ -45,7 +53,7 @@
 
     </main>
     
-
+    <script type="text/javascript" src="../public/js/fila/render.js"></script>
 </body>
 
 </html>
