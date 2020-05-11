@@ -11,15 +11,6 @@ ctx.lineWidth = 2;
 const canvas_h = 619;
 const canvas_w = 1100;
 
-//posicao inicial dos Nos
-const iniX = 100;
-const iniY = canvas_h/2-80;
-
-const cordIni = {
-    x: iniX,
-    y: iniY
-}
-
 //=============================================================//
 //                        BOTÕES                               //
 //=============================================================//

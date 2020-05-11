@@ -9,6 +9,15 @@ const tamNoY = 100;
 const distX = 180;
 const distY = 220;
 
+//posicao inicial dos Nos
+const iniX = 100;
+const iniY = 619/2-80;
+
+var cordIni = {
+    x: iniX,
+    y: iniY
+}
+
 var tam, ant;
 
 //Função para criar o No
@@ -44,6 +53,7 @@ function insere(num){
     atualizaDados();
     //Caso nao haja No
     if(tam == 0){
+
         criaNo(num, cordIni, {}, {})
     } 
     else if(tam >= 5){
@@ -74,6 +84,12 @@ function busca(num){
 
 function remove(num){
     var i = busca(num);
+
+    cordIni = {
+        x: iniX,
+        y: iniY
+    }
+
     //Não há Nó
     if(i == -1){
         alert('Este Nó não existe na lista!')
