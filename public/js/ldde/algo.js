@@ -30,7 +30,7 @@ function atualizaNoAnt(no, nCord){
     no.pPrx.y = nCord.y;
 }
 
-function atualizaNo(no, nCord){
+function atualizaPrxNo(no, nCord){
     no.pAnt.x = nCord.x;
     no.pAnt.y = nCord.y;
 }
@@ -110,7 +110,7 @@ function remove(num){
         atualizaNoAnt(ldde[i-1], prxCord);
     
         //Atualiza o Nó seguinte com a Coord do Nó anterior do removido
-        atualizaNo(ldde[i+1], antCord);
+        atualizaPrxNo(ldde[i+1], antCord);
     }
 
     //remoção do Nó

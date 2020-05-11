@@ -1,4 +1,6 @@
-//Inicialização do Canvas
+//=============================================================//
+//                        INICIALIZAÇÃO                        //
+//=============================================================//
 const canvas = document.getElementById('ldde');
 const ctx = canvas.getContext('2d');
 
@@ -48,6 +50,20 @@ function removeNo(){
         }
     }
     document.getElementById('valor').value = "";
+}
+
+function buscaNo() {
+    var v = document.getElementById('valor').value;
+    v = Number(v);  
+    if(isNaN(v) || v == ""){
+        alert('Apenas é permitido a inserção de números, tente novamente!');
+    } else {
+        if(busca(v) == -1){
+            alert('Nó não encontrado na Lista');
+        } else {
+            alert('Encontrou o Nó');
+        }
+    }
 }
 
 //=============================================================//
