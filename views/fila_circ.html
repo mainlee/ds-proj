@@ -6,22 +6,42 @@
     <meta charset="utf-8">
     <title>Fila Circular</title>
     <link rel="stylesheet" href="../public/css/style_fec.css">
+
+    <script type="text/javascript" src="../public/js/fila/algo.js"></script>
 </head>
 
 <body>
 
     <div class="header">
-        <a href="../index.html">Voltar</a>
+        <div class="back-btn">
+            <a href="../index.html"><</a>
+        </div>
     </div>
-    
+
     <main>
         <div class="input-view">
+            <div class="input-txt">
+                Insira um número:
+            </div>
+            <div class="textbox">
+                <input type="text" id="valor" placeholder="Ex: 5">
+            </div>
 
-        </div>
-        <div>
+            <div class="btn-view">
+                <div class="btn" onclick="guardaNo();">
+                    ENFILEIRAR
+                </div>
 
+                <div class="btn" onclick="removeNo();">
+                    DESENFILEIRAR
+                </div>
+            </div>
         </div>
-        Fila Circular
+
+        <div class="canvas-view">
+            <canvas id="fila" width="1100" height="570"></canvas>
+        </div>
+        
 
     </main>
     
