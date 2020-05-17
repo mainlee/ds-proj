@@ -5,10 +5,12 @@ const vetor = [];
 var ini = 0;
 var fim = 0;
 
+var tam = vetor.length;
+
 function criaVetor(tam){
     //vetor = [];
     for(var i = 0; i<tam; i++){
-        vetor[i] = undefined;
+        vetor[i] = null;
     }
 }
 
@@ -22,7 +24,6 @@ function filaVazia(){
 }
 
 function enfileira(num){
-    var tam = vetor.length;
     //Verifica o overflow da fila
     if((fim+1)%tam == ini){
         alert('Fila cheia! Por favor desenfileire algum número!');
@@ -34,7 +35,6 @@ function enfileira(num){
 }
 
 function desenfileira(){
-    var tam = vetor.length;
     //Verifica se a fila está fazia
     if(!filaVazia()){
         //Apagando o valor da posição inicial da fila
