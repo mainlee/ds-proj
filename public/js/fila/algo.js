@@ -1,24 +1,26 @@
 //Vetor com tamanho fixo
-const vetor = [];
+var vetor = [];
 
 //Variaveis de inicio e fim
 var ini = 0;
 var fim = 0;
 
-var tam = vetor.length;
+var tam;
 
-function criaVetor(tam){
+function criaVetor(len){
     //vetor = [];
-    for(var i = 0; i<tam; i++){
+    for(var i = 0; i<len; i++){
         vetor[i] = null;
     }
+    tam = vetor.length;
 }
 
 function filaVazia(){
     if(ini == fim){
-        console.log('Teste');
+        //console.log('Teste');
         alert('A fila está vazia!');
         return true;
+        
     }
     return false;
 }
@@ -31,6 +33,7 @@ function enfileira(num){
         //Insere o valor na última posição
         vetor[fim] = num;
         fim = (fim+1)%tam;
+        alert('Enfileirou');
     }
 }
 
@@ -38,7 +41,7 @@ function desenfileira(){
     //Verifica se a fila está fazia
     if(!filaVazia()){
         //Apagando o valor da posição inicial da fila
-        vetor[ini] = undefined;
+        vetor[ini] = null;
         ini = (ini+1)%tam;
     }
 }
