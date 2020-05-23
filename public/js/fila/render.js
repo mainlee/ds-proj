@@ -20,6 +20,7 @@ var center_x = 500;
 var center_y = 310;
 
 var cont_final;
+var cont_ini = 1;
 
 function loop(){
     limpaTela();
@@ -98,6 +99,16 @@ function renderFila(){
     }
 }
 
+
+function desenhaSeta(valor, a, b, pos){
+    var ang = ((-b + a* valor) * Math.PI) / 180;
+
+    //Faz apontar para o fim
+    ctx.rotate(ang);
+    ctx.drawImage(pos, -70  , -160);
+    ctx.rotate(-ang);
+}
+
 //Função de desenhar números:
 function desenhaNumero() {
     var ang;
@@ -125,23 +136,22 @@ function desenhaNumero() {
             ctx.rotate(ang);
             ctx.translate(0, radius * 0.85);
             ctx.rotate(-ang);
-            j = i+1;
-            cont_final = j;
         }
     }
-    //Caso a fila fique vazia
-    if(j == undefined){
-        j = cont_final;
-    }
 
-    ang =  ((-geral_b + geral_a* j) * Math.PI) / 180;
-    //Faz apontar para o fim
-    ctx.rotate(ang);
-    ctx.drawImage(fila_fim, -70  , -160);
-    ctx.rotate(-ang);
+    desenhaSeta(ini+1, geral_a, geral_b, fila_ini);
+    desenhaSeta(fim, geral_a, geral_b, fila_fim);
+
+    // //Seta de final
+    // ang =  ((-geral_b + geral_a* fim) * Math.PI) / 180;
+    // //Faz apontar para o fim
+    // ctx.rotate(ang);
+    // ctx.drawImage(fila_fim, -70  , -160);
+    // ctx.rotate(-ang);
 
     ctx.translate(-center_x, -center_y);
 }
+
 
 limpaTela();
 renderEmpty();

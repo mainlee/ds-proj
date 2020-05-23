@@ -42,6 +42,7 @@ function desenfileira(){
         //Apagando o valor da posição inicial da fila
         vetor[ini] = null;
         ini = (ini+1)%tam;
+        alert('Desenfileirou');
     }
 }
 
