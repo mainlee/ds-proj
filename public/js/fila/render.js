@@ -19,6 +19,8 @@ var radius = 250;
 var center_x = 500;
 var center_y = 310;
 
+var cont_final;
+
 function loop(){
     limpaTela();
     renderFila();
@@ -99,6 +101,7 @@ function renderFila(){
 //Função de desenhar números:
 function desenhaNumero() {
     var ang;
+    var j;
 
     //Caso Geral
     var geral_a = 360/vetor.length;
@@ -122,8 +125,21 @@ function desenhaNumero() {
             ctx.rotate(ang);
             ctx.translate(0, radius * 0.85);
             ctx.rotate(-ang);
+            j = i+1;
+            cont_final = j;
         }
     }
+    //Caso a fila fique vazia
+    if(j == undefined){
+        j = cont_final;
+    }
+
+    ang =  ((-geral_b + geral_a* j) * Math.PI) / 180;
+    //Faz apontar para o fim
+    ctx.rotate(ang);
+    ctx.drawImage(fila_fim, -70  , -160);
+    ctx.rotate(-ang);
+
     ctx.translate(-center_x, -center_y);
 }
 

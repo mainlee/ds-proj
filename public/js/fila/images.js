@@ -17,3 +17,9 @@ fila7.src = "../public/img/fila/fila7.png"
 
 var fila8 = new Image();
 fila8.src = "../public/img/fila/fila8.png"
+
+var fila_ini = new Image();
+fila_ini.src = "../public/img/fila/fila_inicio.png"
+
+var fila_fim = new Image();
+fila_fim.src = "../public/img/fila/fila_final.png"
