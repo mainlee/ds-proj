@@ -8,7 +8,6 @@ var fim = 0;
 var tam;
 
 function criaVetor(len){
-    //vetor = [];
     for(var i = 0; i<len; i++){
         vetor[i] = null;
     }

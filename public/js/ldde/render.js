@@ -8,7 +8,7 @@ ctx.lineWidth = 2;
 
 //variaveis de posicao e tamanho
 //tamanho do canvas
-const canvas_h = 619;
+const canvas_h = 570;
 const canvas_w = 1100;
 
 //=============================================================//
@@ -55,6 +55,7 @@ function buscaNo() {
             alert('Encontrou o Nó');
         }
     }
+    document.getElementById('valor').value = "";
 }
 
 //=============================================================//
@@ -62,7 +63,7 @@ function buscaNo() {
 //=============================================================//
 
 function limpaTela(){
-    ctx.fillStyle = "#667eea"
+    ctx.fillStyle = "#322045"
     ctx.fillRect(0, 0, canvas_w, canvas_h);    
 }
 

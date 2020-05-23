@@ -8,9 +8,9 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to top, #249978 0%, #72afd3 100%);
+    background-color: #153242;
     width: 100%;
-    height: 98;
+    height: 98vh;
 }
 
 main {
@@ -19,9 +19,6 @@ main {
 
 .header {
     border-bottom: 2px solid #FFF;
-    /*border: #FFF;
-    border-style: solid;
-    border-width: 2px;*/
     width: 100%;
     height: 10vh;
 }

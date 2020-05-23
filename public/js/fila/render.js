@@ -34,7 +34,7 @@ function criou(){
     tamanho = document.getElementById("valor").value;
     tamanho = Number(tamanho);
     if(tamanho < 4 || tamanho > 8){
-        alert('Favor preencher com números entre 4 e 8');
+        alert('Estamos na versão beta. Favor preencher com números entre 4 e 8');
         document.getElementById("valor").value = "";
     } else {
         document.getElementById("btn-view").hidden = false;
@@ -69,13 +69,15 @@ function btnDesenf(){
 //==============================================================================//
 
 function limpaTela(){
-    ctx.fillStyle = "#249978";
+    ctx.fillStyle = "#153242";
     ctx.fillRect(0, 0, canvas_w, canvas_h);    
 }
 
+//Circunferencia Inicial
 function renderEmpty(){
     ctx.drawImage(fila, 250 , 50);
 }
+
 
 function renderFila(){
     if(tamanho == 4){
@@ -96,19 +98,18 @@ function renderFila(){
 
 //Função de desenhar números:
 function desenhaNumero() {
-    ctx.translate(center_x, center_y);
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "white";
-    //ctx.fillText("5",center_x+radius,center_y);
-
     var ang;
-    ctx.font = radius * 0.15 + "px arial";
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
 
     //Caso Geral
     var geral_a = 360/vetor.length;
     var geral_b = geral_a/2;
+
+    ctx.translate(center_x, center_y);
+
+    ctx.fillStyle = "white";
+    ctx.font = radius * 0.15 + "px arial";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "center";
 
     for(var i = 1; i <= vetor.length; i++){
         if(vetor[i-1] != null){
