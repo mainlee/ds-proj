@@ -11,6 +11,8 @@ ctx.lineWidth = 2;
 const canvas_h = 570;
 const canvas_w = 1100;
 
+var renderBusc = 0;
+
 //=============================================================//
 //                        BOTÕES                               //
 //=============================================================//
@@ -116,8 +118,10 @@ function moveNos(){
     desenhaNos();
 }
 
-function buscaAnimation(){
 
+
+function buscaAnimation(){
+    
 }
 
 limpaTela();
