@@ -59,7 +59,11 @@ function insere(num){
     else if(tam >= 5){
         alert("Memória cheia! Favor remover algum Nó!");
         return false;
-    }  else {
+    }  
+    else if(ldde[ant].crd.x+distX > 820) {
+        alert("Tela com o limite máximo de Nós!");
+        return false;
+    }else {
         var newCord = {
             x: ldde[ant].crd.x+distX,
             y: ldde[ant].crd.y
@@ -131,6 +135,6 @@ function remove(num){
 
     //remoção do Nó
     ldde.splice(i,1); 
-    alert('Nó removido!');
+    //alert('Nó removido!');
     return true;   
 }

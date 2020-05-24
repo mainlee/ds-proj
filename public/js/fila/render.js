@@ -142,13 +142,6 @@ function desenhaNumero() {
     desenhaSeta(ini+1, geral_a, geral_b, fila_ini);
     desenhaSeta(fim, geral_a, geral_b, fila_fim);
 
-    // //Seta de final
-    // ang =  ((-geral_b + geral_a* fim) * Math.PI) / 180;
-    // //Faz apontar para o fim
-    // ctx.rotate(ang);
-    // ctx.drawImage(fila_fim, -70  , -160);
-    // ctx.rotate(-ang);
-
     ctx.translate(-center_x, -center_y);
 }
 

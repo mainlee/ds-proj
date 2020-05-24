@@ -58,6 +58,14 @@ function buscaNo() {
     document.getElementById('valor').value = "";
 }
 
+function organizar(){
+    if(ldde.length == 0){
+        alert('Nenhum nó precisa ser organizado!');
+    } else {
+        moveNos();
+    }
+}
+
 //=============================================================//
 //                        CANVAS                               //
 //=============================================================//
@@ -91,6 +99,20 @@ function desenhaNos(){
             }
         }
     }
+}
+
+function moveNos(){
+    limpaTela();
+
+    if(ldde[0].crd.x !== iniX){
+        ldde[0].crd.x = iniX;
+    }
+
+    for(var i=1; i<ldde.length; i++){
+        ldde[i].crd.x = ldde[i-1].pPrx.x-distX;
+        ldde[i].pAnt.x = ldde[i-1].crd.x;
+    }
+    desenhaNos();
 }
 
 limpaTela();
