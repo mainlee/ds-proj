@@ -119,9 +119,19 @@ function moveNos(){
 }
 
 
+function selectAnimation(num){
+    ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
+    ctx.drawImage(fNo_ps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+    sleep();
+    ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
+    ctx.drawImage(fNo_pps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+}
 
-function buscaAnimation(){
-    
+function sleep(){
+    var time = 0;
+    while(time < 10000000000){
+        time++;
+    }
 }
 
 limpaTela();
