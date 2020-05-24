@@ -52,7 +52,7 @@ function buscaNo() {
         if(busca(v) == -1){
             alert('Nó não encontrado na Lista');
         } else {
-            alert('Encontrou o Nó');
+            alert('Encontrou o Nó!');
         }
     }
     document.getElementById('valor').value = "";
@@ -60,7 +60,7 @@ function buscaNo() {
 
 function organizar(){
     if(ldde.length == 0){
-        alert('Nenhum nó precisa ser organizado!');
+        alert('Não há nenhum Nó!');
     } else {
         moveNos();
     }
@@ -109,10 +109,16 @@ function moveNos(){
     }
 
     for(var i=1; i<ldde.length; i++){
-        ldde[i].crd.x = ldde[i-1].pPrx.x-distX;
+        ldde[i].crd.x = ldde[i-1].crd.x+distX;
         ldde[i].pAnt.x = ldde[i-1].crd.x;
+        ldde[i-1].pPrx.x = ldde[i].crd.x;
     }
     desenhaNos();
 }
 
+function buscaAnimation(){
+
+}
+
 limpaTela();
+alert('Utilize a função de organizar para ajustar as posições dos Nós! :)');

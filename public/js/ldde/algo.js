@@ -61,7 +61,7 @@ function insere(num){
         return false;
     }  
     else if(ldde[ant].crd.x+distX > 820) {
-        alert("Tela com o limite máximo de Nós!");
+        alert("Tela com o limite máximo de Nós! Utilize a ferramenta de Organizar!");
         return false;
     }else {
         var newCord = {
