@@ -28,7 +28,7 @@ no_dlS.src = "../public/img/ldde/noDL_s.png";
 
 //Ponteiro do Nó com dupla ligação destacado
 var no_dlPS = new Image();
-no_dlS.src = "../public/img/ldde/noDL_ps.png";
+no_dlPS.src = "../public/img/ldde/noDL_ps.png";
 
 
 

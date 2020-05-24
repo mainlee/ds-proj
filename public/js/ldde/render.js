@@ -105,11 +105,9 @@ function desenhaNos(){
 
 function moveNos(){
     limpaTela();
-
     if(ldde[0].crd.x !== iniX){
         ldde[0].crd.x = iniX;
     }
-
     for(var i=1; i<ldde.length; i++){
         ldde[i].crd.x = ldde[i-1].crd.x+distX;
         ldde[i].pAnt.x = ldde[i-1].crd.x;
@@ -118,21 +116,43 @@ function moveNos(){
     desenhaNos();
 }
 
-
-function selectAnimation(num){
-    ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
-    ctx.drawImage(fNo_ps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-    sleep();
-    ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
-    ctx.drawImage(fNo_pps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-}
-
-function sleep(){
-    var time = 0;
-    while(time < 10000000000){
-        time++;
+/*function selectNo(num){
+    if(num < tam){
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "red";
+    
+        if(num == 0){
+            ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
+            ctx.drawImage(fNo_ps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+        } else {
+            if(ldde[num].pPrx.x == undefined){
+                ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+103, ldde[num].crd.y+55);
+                ctx.drawImage(lastNoS, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+            } else {
+                ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+100, ldde[num].crd.y+55);
+                ctx.drawImage(no_dlS, 0, 0, 230, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+            }
+        }
+        selectPointer(num);
     }
 }
+
+function selectPointer(num){
+    ctx.fillStyle = "white";
+    console.log(num);
+    if(num == 0){
+        ctx.drawImage(fNo_pps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+    } else {
+        if(ldde[num].pPrx.x == undefined){
+            ctx.drawImage(lastNoPS, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+            ctx.fillText(ldde[num-1].valor.toString(), ldde[num-1].crd.x+95, ldde[num-1].crd.y+55);
+        } else {
+            ctx.drawImage(no_dlPS, 0, 0, 230, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
+            ctx.fillText(ldde[num-1].valor.toString(), ldde[num-1].crd.x+95, ldde[num-1].crd.y+55);
+        }
+    }
+    selectNo(num+1);
+}*/
 
 limpaTela();
 alert('Utilize a função de organizar para ajustar as posições dos Nós! :)');
