@@ -1,8 +1,16 @@
 //Imagens dos nós
 
-//Primeiros Nós
+//Primeiros Nó
 var fNo = new Image();
 fNo.src = "../public/img/ldde/firstNo.png";
+
+//Primeiro Nó selecionado
+var fNo_s = new Image();
+fNo_s.src = "../public/img/ldde/firstNo_s.png";
+
+//Primeiro Nó sem itens encontrados
+var fNo_ns = new Image();
+fNo_ns.src = "../public/img/ldde/firstNo_ps.png";
 
 //primeiro Nó com ponteiro para um próximo
 var fNo_p = new Image();

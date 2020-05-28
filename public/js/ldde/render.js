@@ -11,7 +11,18 @@ ctx.lineWidth = 2;
 const canvas_h = 570;
 const canvas_w = 1100;
 
+const iniX = 100;
+const iniY = 250;
+const tamNoX = 150;
+const tamNoY = 100;
+const distX = 180;
+const distY = 220;
+
 var renderBusc = 0;
+
+//Controle
+var renderControle;
+var renderIdx;
 
 //=============================================================//
 //                        BOTÕES                               //
@@ -22,7 +33,7 @@ function guardaNo(){
     if(isNaN(v) || v == ""){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
-        if(insere(v)){
+        if(insere2(v)){
             limpaTela();
             desenhaNos();
         }
@@ -37,7 +48,8 @@ function removeNo(){
     if(isNaN(v) || v == ""){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
-        if(remove(v)){
+        if(remove2(v)){
+            console.log('Teste');
             limpaTela();
             desenhaNos();
         }
@@ -51,22 +63,15 @@ function buscaNo() {
     if(isNaN(v) || v == ""){
         alert('Apenas é permitido a inserção de números, tente novamente!');
     } else {
-        if(busca(v) == -1){
+        if(buscaBtn(v) == false){
             alert('Nó não encontrado na Lista');
         } else {
-            alert('Encontrou o Nó!');
+            desenhaNosBusca(v);
         }
     }
     document.getElementById('valor').value = "";
 }
 
-function organizar(){
-    if(ldde.length == 0){
-        alert('Não há nenhum Nó!');
-    } else {
-        moveNos();
-    }
-}
 
 //=============================================================//
 //                        CANVAS                               //
@@ -78,81 +83,94 @@ function limpaTela(){
 }
 
 function desenhaNos(){
-    atualizaDados();
+    renderIdx = 0;
+    renderControle = primeiro;
     ctx.font = "30px Arial";
     ctx.fillStyle = "white";
-    for(i in ldde){
-        if(i == 0){
-            if(ldde[i].pPrx.x === undefined){
-                ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+95, ldde[i].crd.y+55);
-                ctx.drawImage(fNo, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
+    while(renderControle != null){
+        if(renderControle.noAnt == null){
+            if(renderControle.noPrx == null){
+                ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                ctx.drawImage(fNo, iniX, iniY);
             } else {
-                ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+95, ldde[i].crd.y+55);
-                ctx.drawImage(fNo_p, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
+                ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                ctx.drawImage(fNo_p, iniX, iniY);
             }
         } else {
-            if(i == ant){
-                ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+103, ldde[i].crd.y+55);
-                ctx.drawImage(lastNo, 0, 0, 220, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
-            }
-            else {
-                ctx.fillText(ldde[i].valor.toString(), ldde[i].crd.x+100, ldde[i].crd.y+55);
-                ctx.drawImage(no_dl, 0, 0, 230, 100,ldde[i].crd.x, ldde[i].crd.y, 220, 100);
+            if(renderControle.noPrx == null){
+                ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                ctx.drawImage(lastNo, iniX+renderIdx*distX, iniY);
+            } else {
+                ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                ctx.drawImage(no_dl, iniX+renderIdx*distX, iniY);
             }
         }
-    }
-}
-
-function moveNos(){
-    limpaTela();
-    if(ldde[0].crd.x !== iniX){
-        ldde[0].crd.x = iniX;
-    }
-    for(var i=1; i<ldde.length; i++){
-        ldde[i].crd.x = ldde[i-1].crd.x+distX;
-        ldde[i].pAnt.x = ldde[i-1].crd.x;
-        ldde[i-1].pPrx.x = ldde[i].crd.x;
-    }
-    desenhaNos();
-}
-
-/*function selectNo(num){
-    if(num < tam){
-        ctx.font = "30px Arial";
-        ctx.fillStyle = "red";
     
-        if(num == 0){
-            ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+95, ldde[num].crd.y+55);
-            ctx.drawImage(fNo_ps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-        } else {
-            if(ldde[num].pPrx.x == undefined){
-                ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+103, ldde[num].crd.y+55);
-                ctx.drawImage(lastNoS, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-            } else {
-                ctx.fillText(ldde[num].valor.toString(), ldde[num].crd.x+100, ldde[num].crd.y+55);
-                ctx.drawImage(no_dlS, 0, 0, 230, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-            }
-        }
-        selectPointer(num);
+        //console.log('Teste');
+        renderIdx++;
+        renderControle = renderControle.noPrx;
     }
+
 }
 
-function selectPointer(num){
+function desenhaNosBusca(valor){
+    var encontrado = false;
+    renderIdx = 0;
+    renderControle = primeiro;
+    ctx.font = "30px Arial";
     ctx.fillStyle = "white";
-    console.log(num);
-    if(num == 0){
-        ctx.drawImage(fNo_pps, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-    } else {
-        if(ldde[num].pPrx.x == undefined){
-            ctx.drawImage(lastNoPS, 0, 0, 220, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-            ctx.fillText(ldde[num-1].valor.toString(), ldde[num-1].crd.x+95, ldde[num-1].crd.y+55);
+    while(renderControle != null){
+        if(renderControle.noAnt == null){
+            if(renderControle.noPrx == null){
+                if(renderControle.valor == valor){
+                    ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                    ctx.drawImage(fNo_s, iniX, iniY);
+                } else {
+                    ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                    ctx.drawImage(fNo_ns, iniX, iniY);
+                }
+            } else {
+                if(renderControle.valor == valor){
+                    encontrado = true;
+                    ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                    ctx.drawImage(fNo_ps, iniX, iniY);
+                } else {
+                    ctx.fillText(renderControle.valor.toString(), iniX+95, iniY+55);
+                    ctx.drawImage(fNo_pps, iniX, iniY);
+                }
+            }
         } else {
-            ctx.drawImage(no_dlPS, 0, 0, 230, 100,ldde[num].crd.x, ldde[num].crd.y, 220, 100);
-            ctx.fillText(ldde[num-1].valor.toString(), ldde[num-1].crd.x+95, ldde[num-1].crd.y+55);
+            if(renderControle.noPrx == null){
+                if(renderControle.valor == valor){
+                    encontrado = true;
+                    ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                    ctx.drawImage(lastNoS, iniX+renderIdx*distX, iniY);
+                } else {
+                    if(encontrado == true){
+                        ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                        ctx.drawImage(lastNo, iniX+renderIdx*distX, iniY);
+                    } else {
+                        ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                        ctx.drawImage(lastNoPS, iniX+renderIdx*distX, iniY);
+                    }
+                }
+            } else {
+                if(renderControle.valor == valor){
+                    encontrado = true;
+                    ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                    ctx.drawImage(no_dlS, iniX+renderIdx*distX, iniY);
+                } else {
+                    ctx.fillText(renderControle.valor.toString(), iniX+105+renderIdx*distX, iniY+55);
+                    ctx.drawImage(no_dlPS, iniX+renderIdx*distX, iniY);
+                }
+                
+            }
         }
+    
+        renderIdx++;
+        renderControle = renderControle.noPrx;
     }
-    selectNo(num+1);
-}*/
+
+}
 
 limpaTela();
-alert('Utilize a função de organizar para ajustar as posições dos Nós! :)');

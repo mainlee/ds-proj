@@ -1,140 +1,95 @@
-//=================================================================//
-//                            ALGORITMO                            //
-//=================================================================//
+var primeiro = null;
+var ultimo = null;
 
-var ldde = [];
+var tam = 0;
+var i = 0;
+var controle;
 
-const tamNoX = 150;
-const tamNoY = 100;
-const distX = 180;
-const distY = 220;
-
-//posicao inicial dos Nos
-const iniX = 100;
-const iniY = 619/2-80;
-
-var cordIni = {
-    x: iniX,
-    y: iniY
-}
-
-var tam, ant;
-
-//Função para criar o No
-function criaNo(num, cNo, cAnt, cPrx){
+function criaNo2(valor, noAnt, noPrx){
     var no = {
-        valor: num,
-        //Coordenadas do No
-        crd: cNo,
-        //Coord. dos outros Nos
-        pAnt: cAnt,
-        pPrx: cPrx,
-    };
-    ldde.push(no);
-}
-
-//Atualiza posição do No anterior
-function atualizaNoAnt(no, nCord){
-    no.pPrx.x = nCord.x;
-    no.pPrx.y = nCord.y;
-}
-
-function atualizaPrxNo(no, nCord){
-    no.pAnt.x = nCord.x;
-    no.pAnt.y = nCord.y;
-}
-
-function atualizaDados(){
-    ant = ldde.length-1;
-    tam = ldde.length;
-}
-
-function insere(num){
-    atualizaDados();
-    //Caso nao haja No
-    if(tam == 0){
-
-        criaNo(num, cordIni, {}, {})
-    } 
-    else if(tam >= 5){
-        alert("Memória cheia! Favor remover algum Nó!");
-        return false;
-    }  
-    else if(ldde[ant].crd.x+distX > 820) {
-        alert("Tela com o limite máximo de Nós! Utilize a ferramenta de Organizar!");
-        return false;
-    }else {
-        var newCord = {
-            x: ldde[ant].crd.x+distX,
-            y: ldde[ant].crd.y
-        };
-        //cria o No e atualiza o anterior
-        criaNo(num, newCord, ldde[ant].crd, {});
-        atualizaNoAnt(ldde[ant], newCord);
+        valor: valor,
+        noAnt: noAnt,
+        noPrx: noPrx
     }
+    return no;
+}
+
+function varre(no){
+    if(no.noPrx == null){
+        return ultimo = no;
+    }
+    varre(no.noPrx);
+}
+
+function atualizaPos(no, noAnt, noPrx){
+    no.noAnt = noAnt;
+    no.noPrx = noPrx;
+}
+
+function insere2(valor){
+    var no = criaNo2(valor, null, null);
+    tam++;
+
+    if(primeiro == null){
+        primeiro = no;
+        ultimo = primeiro;  
+        return true;
+    }
+
+    varre(primeiro, primeiro.noPrx);
+
+    atualizaPos(ultimo, ultimo.noAnt, no);
+    atualizaPos(no, ultimo, null);
+    ultimo = no;
     return true;
 }
 
-function busca(num){
-    atualizaDados();
-
-    //vetor de valores dos Nos
-    var busca = ldde.map(function(no){
-        return no.valor;
-    });
-    //Retorna o index do valor encontrado
-    return busca.indexOf(num);
+function busca2(valor, no){
+    if(no.valor == valor){
+        return controle = no;
+    }
+    if(no.noPrx == null){
+        alert('Valor não encontrado!');
+        return false;
+    }
+    busca2(valor, no.noPrx);
 }
 
-function remove(num){
-    var i = busca(num);
-
-    cordIni = {
-        x: iniX,
-        y: iniY
+function buscaBtn(valor){
+    busca2(valor, primeiro);
+    if(controle == -1){
+        return false;
     }
+}
 
-    //Não há Nó
-    if(i == -1){
-        alert('Este Nó não existe na lista!')
+function remove2(valor){
+    busca2(valor, primeiro);
+    if(controle == -1){
         return false;
     }
 
-    //Caso seja o primeiro Nó
-    if(i == 0){
-        if(ldde[i+1] == undefined){
-            //Não há nó para atualizar
+    if(controle == primeiro){
+        if(controle.noPrx != null){
+            atualizaPos(controle.noPrx, null, controle.noPrx.noPrx);
+            primeiro = controle.noPrx;
         } else {
-            atualizaPrxNo(ldde[i+1], {});
-        }
-    }
-
-    //Caso seja o ultimo Nó
-    else if (i == ant) {
-        atualizaNoAnt(ldde[i-1], {});
-    }
-
-    else {
-        //Atualização dos outros Nos
-        var prxCord = {
-            x: ldde[i].pPrx.x,
-            y: ldde[i].pPrx.y
+            if(ultimo == primeiro){
+                ultimo = null;
+            }
+            primeiro = null;
         }
         
-        var antCord = {
-            x: ldde[i].pAnt.x,
-            y: ldde[i].pAnt.y
-        }  
-        
-        //Atualiza o Nó anterior com a Coord do prx Nó do Nó removido
-        atualizaNoAnt(ldde[i-1], prxCord);
-    
-        //Atualiza o Nó seguinte com a Coord do Nó anterior do removido
-        atualizaPrxNo(ldde[i+1], antCord);
+    }
+    else if(controle == ultimo){
+        atualizaPos(controle.noAnt, controle.noAnt.noAnt, null);
+        ultimo = controle.noAnt;
+
+    } else {
+        atualizaPos(controle.noAnt, controle.noAnt.noAnt, controle.noPrx);
+        atualizaPos(controle.noPrx, controle.noAnt, controle.noPrx.noPrx);
     }
 
-    //remoção do Nó
-    ldde.splice(i,1); 
-    //alert('Nó removido!');
-    return true;   
+    tam--;
+    controle = null;
+    return true;
 }
